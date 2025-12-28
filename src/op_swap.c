@@ -1,30 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   op_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macbookpro2019 <macbookpro2019@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 20:32:54 by macbookpro2       #+#    #+#             */
-/*   Updated: 2025/12/28 13:31:38 by macbookpro2      ###   ########.fr       */
+/*   Created: 2025/12/28 13:27:31 by macbookpro2       #+#    #+#             */
+/*   Updated: 2025/12/28 13:27:33 by macbookpro2      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_sort(t_ps *ps)
+void	op_sa(t_ps *ps, int print)
 {
-	if (ps->size_a <= 1)
+	int	t;
+
+	if (ps->size_a < 2)
 		return ;
-	if (ps_is_sorted(ps->a, ps->size_a) != 0)
-		return ;
-	if (ps->size_a == 2)
-		ps_sort_2(ps);
-	else if (ps->size_a == 3)
-		ps_sort_3(ps);
-	else if (ps->size_a == 4 || ps->size_a == 5)
-		ps_sort_4_5(ps);
-	else
-		ps_sort_radix(ps);
+	t = ps->a[0];
+	ps->a[0] = ps->a[1];
+	ps->a[1] = t;
+	put_op("sa\n", print);
 }
 
+void	op_sb(t_ps *ps, int print)
+{
+	int	t;
+
+	if (ps->size_b < 2)
+		return ;
+	t = ps->b[0];
+	ps->b[0] = ps->b[1];
+	ps->b[1] = t;
+	put_op("sb\n", print);
+}
+
+void	op_ss(t_ps *ps, int print)
+{
+	op_sa(ps, 0);
+	op_sb(ps, 0);
+	put_op("ss\n", print);
+}

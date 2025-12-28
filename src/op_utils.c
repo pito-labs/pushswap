@@ -1,30 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   op_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macbookpro2019 <macbookpro2019@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 20:32:54 by macbookpro2       #+#    #+#             */
-/*   Updated: 2025/12/28 13:31:38 by macbookpro2      ###   ########.fr       */
+/*   Created: 2025/12/28 13:26:40 by macbookpro2       #+#    #+#             */
+/*   Updated: 2025/12/28 14:07:49 by macbookpro2      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_sort(t_ps *ps)
+void	shift_left(int *arr, int n)
 {
-	if (ps->size_a <= 1)
+	int	i;
+
+	if (n <= 1)
 		return ;
-	if (ps_is_sorted(ps->a, ps->size_a) != 0)
-		return ;
-	if (ps->size_a == 2)
-		ps_sort_2(ps);
-	else if (ps->size_a == 3)
-		ps_sort_3(ps);
-	else if (ps->size_a == 4 || ps->size_a == 5)
-		ps_sort_4_5(ps);
-	else
-		ps_sort_radix(ps);
+	i = 0;
+	while (i + 1 < n)
+	{
+		arr[i] = arr[i + 1];
+		i = i + 1;
+	}
 }
 
+void	shift_right(int *arr, int n)
+{
+	int	i;
+
+	if (n <= 1)
+		return ;
+	i = n - 1;
+	while (i > 0)
+	{
+		arr[i] = arr[i - 1];
+		i = i - 1;
+	}
+}
+
+void	put_op(const char *s, int print)
+{
+	if (print != 0)
+		ps_putstr_fd(s, 1);
+}

@@ -1,30 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   op_rev_rotate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macbookpro2019 <macbookpro2019@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/27 20:32:54 by macbookpro2       #+#    #+#             */
-/*   Updated: 2025/12/28 13:31:38 by macbookpro2      ###   ########.fr       */
+/*   Created: 2025/12/28 13:29:31 by macbookpro2       #+#    #+#             */
+/*   Updated: 2025/12/28 13:29:34 by macbookpro2      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_sort(t_ps *ps)
+void	op_rra(t_ps *ps, int print)
 {
-	if (ps->size_a <= 1)
+	int	bot;
+
+	if (ps->size_a < 2)
 		return ;
-	if (ps_is_sorted(ps->a, ps->size_a) != 0)
-		return ;
-	if (ps->size_a == 2)
-		ps_sort_2(ps);
-	else if (ps->size_a == 3)
-		ps_sort_3(ps);
-	else if (ps->size_a == 4 || ps->size_a == 5)
-		ps_sort_4_5(ps);
-	else
-		ps_sort_radix(ps);
+	bot = ps->a[ps->size_a - 1];
+	shift_right(ps->a, ps->size_a);
+	ps->a[0] = bot;
+	put_op("rra\n", print);
 }
 
+void	op_rrb(t_ps *ps, int print)
+{
+	int	bot;
+
+	if (ps->size_b < 2)
+		return ;
+	bot = ps->b[ps->size_b - 1];
+	shift_right(ps->b, ps->size_b);
+	ps->b[0] = bot;
+	put_op("rrb\n", print);
+}
+
+void	op_rrr(t_ps *ps, int print)
+{
+	op_rra(ps, 0);
+	op_rrb(ps, 0);
+	put_op("rrr\n", print);
+}

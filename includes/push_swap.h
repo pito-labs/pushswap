@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: macbookpro2019 <macbookpro2019@student.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 13:53:52 by macbookpro2       #+#    #+#             */
+/*   Updated: 2025/12/28 13:55:17 by macbookpro2      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -14,15 +26,24 @@ typedef struct s_ps
 	int	cap;
 }	t_ps;
 
-/* parse */
+/* parse (parse_args.c & parse_utils.c) */
 int		ps_parse(int argc, char **argv, int **out_vals, int *out_n);
+int		is_ws(char c);
+int		is_digit(char c);
 int		ps_atoi_strict_range(const char *s, int start, int end, int *out);
+int		count_tokens_in_str(const char *s);
+int		next_token(const char *s, int *i, int *start, int *end);
 
 /* compress */
 int		ps_compress(const int *vals, int n, int **out_rank);
 
 /* sort */
 void	ps_sort(t_ps *ps);
+
+/* op_utils (shared helper functions) */
+void	shift_left(int *arr, int n);
+void	shift_right(int *arr, int n);
+void	put_op(const char *s, int print);
 
 /* operations (print=1 prints op, print=0 is silent) */
 void	op_sa(t_ps *ps, int print);
